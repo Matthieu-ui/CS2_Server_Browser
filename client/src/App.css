@@ -1,0 +1,25 @@
+html{
+  color: #ffffff;
+  background-color: rgb(24, 30, 36);
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4em 0 4em;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  #root {
+    padding: 0 2em 0 2em;
+  }
+}
+  
+@media screen and (max-width: 480px) {
+  #root {
+    padding: 0 0 0 0;
+  }
+}
+
+
