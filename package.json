@@ -1,0 +1,23 @@
+{
+  "name": "nerv",
+  "version": "1.0.0",
+  "description": "full stack template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd client && npm run dev\" \" cd server && npm run dev\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matthieu-ui/NERV.git"
+  },
+  "author": "matthieu felker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matthieu-ui/NERV/issues"
+  },
+  "homepage": "https://github.com/Matthieu-ui/NERV#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

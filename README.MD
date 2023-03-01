@@ -34,23 +34,14 @@ npm install
 
 ```
 
-3. Navigate to the client directory and install NPM packages and start the client
+3. Start the development server
 
 ```sh
 
-cd client && npm install && npm run dev
+npm run dev
 
 ```
 
-
-4. Navigate to the server directory and install NPM packages and start the server
-
-```sh
-
-cd server && npm install && npm run dev
-
-```
-
-5. Navigate to http://localhost:5137
+note that concurrently is used to run both the server and client at the same time.
 
 
