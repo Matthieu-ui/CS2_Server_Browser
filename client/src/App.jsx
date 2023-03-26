@@ -1,42 +1,35 @@
-import React, { useEffect, useState } from 'react'
+
 import './App.css'
-import 'vite/modulepreload-polyfill'
-import Landing from './components/landing'
+import Main from './components/Main'
+import Header from './components/Header'
+import Aside from './components/Aside'
 
-const App = () => {
+// toggle aside
+function App() {
 
-  const [backendData, setBackendData] = useState([{}])
+  // <p className='text-accent p-4'>I'm baby irony polaroid pok pok hashtag. Shoreditch meggings kogi organic. Gluten-free tacos franzen, hoodie kickstarter letterpress kogi forage selvage chia gatekeep swag artisan. Cliche master cleanse mukbang jawn same humblebrag mlkshk jianbing ennui seitan selvage tofu cupping. Jianbing chambray selfies church-key bruh, sustainable distillery cred XOXO.</p>
 
-  //use effect to fetch data from backend server
-  useEffect(() => {
-    fetch('/api')
-      .then(res => res.json())
-      .then(data => {
-        setBackendData(data)
-      })
-
-  }, [])
-
-
-
-  // if backendData.users is true, then map through the array and return a div for each user
 
   return (
-    <div>
-      <Landing />
+    <div className="App">
+    {/* Header */}
+    
+    <Header />
 
-      <div className="flex flex-col justify-center items-center bg-slate-900 p-5 drop-shadow-xl">
-      <p className="font-thin ">Node + Express + React + Vite + TailwindCSS - A simple boilerplate for a full stack application.</p>
 
+    <div className="flex flex-col md:flex-row">
+    <aside className="w-full md:w-1/4 nm-convex-secondary-lg">
+      <Aside/>
+      <p className='text-accent p-4'>// this is where users will show</p>
+
+    </aside>
+    <main className="w-full md:w-3/4">
+      <Main/>
+    </main>
   </div>
-      <div className='pt-5 font-mono'>
-        {(backendData.uses) ? backendData.uses.map((uses, index) => {
-          return <div key={index}>{uses}</div>
-        }) : <div>loading...</div>
-        }
-      </div>
+
     </div>
-  );
+  )
 }
 
 export default App

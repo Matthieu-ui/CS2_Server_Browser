@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Matthieu-ui/NERV#readme",
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5"
   }
 }

@@ -1,47 +1,61 @@
-<!-- NERV -->
+# Web Development Project 5 - *Name of App Here*
 
-# NERV
+Submitted by: **Your Name Here**
 
-## What is NERV?
+This web app: **insert description**
 
-NERV is a full stack web application template using Node.js, Express, React, and Vite (NERV). Along with Tailwind CSS, it also includes a few other libraries to help you get started.
+Time spent: **X** hours spent in total
 
-## Why NERV?
+## Required Features
 
-I built NERV to help me get started with new projects. I wanted to have a template that I could use to quickly get a project up and running. I also wanted to use the latest and greatest technologies. I hope you find it useful.
+The following **required** functionality is completed:
 
-## Getting started
+- [ ] **The list displays a list of data fetched using an API call**
+- [ ] **Data uses the useEffect React hook and async/await syntax**
+- [ ] **The app dashboard includes at least three summary statistics about the data such as**
+  - [ ] *insert details*
+- [ ] **A search bar allows the user to search for an item in the fetched data**
+- [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
-### Prerequisites
+The following **optional** features are implemented:
 
-- [Node.js](https://nodejs.org/en/)
+- [ ] Multiple filters can be applied simultaneously
+- [ ] Filters use different input types such as a text input, a selection, or a slider
+- [ ] The user can enter specific bounds for filter values
 
-### Installation
+The following **additional** features are implemented:
 
-1. Clone the repo
+* [ ] List anything else that you added to improve the site's functionality!
 
-```sh
+## Video Walkthrough
 
-git clone
+Here's a walkthrough of implemented user stories:
 
-```
+<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-2. Install NPM packages
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
+[ScreenToGif](https://www.screentogif.com/) for Windows
+[peek](https://github.com/phw/peek) for Linux. -->
 
-```sh
+## Notes
 
-npm install
+Describe any challenges encountered while building the app.
 
-```
+## License
 
-3. Start the development server
+    Copyright [yyyy] [name of copyright owner]
 
-```sh
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-npm run dev
+        http://www.apache.org/licenses/LICENSE-2.0
 
-```
-
-note that concurrently is used to run both the server and client at the same time.
-
-
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
