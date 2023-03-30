@@ -12,6 +12,7 @@ const Aside = () => {
 
       <div className="flex flex-col items-center justify-center p-4 m-auto bg-secondary nm-convex-secondary-sm">
         <UserSearch />
+  
       </div>
     </div>
 

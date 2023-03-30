@@ -3,6 +3,7 @@ import './App.css'
 import Main from './components/Main'
 import Header from './components/Header'
 import Aside from './components/Aside'
+import UserSearch from './components/UserSearch'
 
 // toggle aside
 function App() {
@@ -12,21 +13,20 @@ function App() {
 
   return (
     <div className="App">
-    {/* Header */}
-    
-    <Header />
+      {/* Header */}
+
+      <Header />
 
 
-    <div className="flex flex-col md:flex-row">
-    <aside className="w-full md:w-1/4 nm-convex-secondary-lg">
-      <Aside/>
-      <p className='text-accent p-4'>// this is where users will show</p>
+      <div className="flex flex-col md:flex-row h-screen">
+        <main className="w-full bg-secondary h-auto">
+            <div className="h-auto flex-col p-4 m-auto ">
+              <UserSearch />
+            </div>
 
-    </aside>
-    <main className="w-full md:w-3/4">
-      <Main/>
-    </main>
-  </div>
+        </main>
+      
+      </div>
 
     </div>
   )
