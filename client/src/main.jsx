@@ -2,12 +2,29 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import DetailView from './routes/DetailView'
+import Layout from './routes/Layout'
+import About from './components/About'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index={true} element={<App />} />
+      <Route path="about" element={<About />} />
+      <Route path="contact" element={<Contact />} />
+    </Route>
+    <Route index={false} path="#" element={<DetailView />} />
+  </Routes>
+ 
+  <Footer/>
 
-    <main className='bg-slate-600 min-h-screen flex flex-col drop-shadow-lg'>
-      <App />
-    </main>
-  </React.StrictMode>,
+</BrowserRouter>
 )
+
+// Path: cryptohustlelite\src\App.jsx
