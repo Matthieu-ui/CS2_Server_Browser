@@ -22,7 +22,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you added to improve the site's functionality!
+* [x] List anything else that you added to improve the site's functionality!
+
+tailwind
+node
+react router
+chart.js
 
 ## Video Walkthrough
 
