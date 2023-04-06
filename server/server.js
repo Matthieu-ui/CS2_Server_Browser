@@ -1,147 +1,92 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
+const axios = require('axios');
+
+
+// ********** MIDDLEWARE **********
 app.use(cors());
 require('dotenv').config()
 API_KEY = process.env.VITE_APP_API_KEY
 
 
 
+// ********** ROUTES **********
 
-
-const axios = require('axios');
-
-
-//# get player games and game data
-
-app.get(`/api/steam/user/games/:steamId`, (req, res) => {
-    const steamId = req.params.steamId;
-
-    axios.get(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${API_KEY}&steamid=${steamId}&include_appinfo=1`)
-    .then(response => {
-        const data = response.data;
-        if (data.response.games) {
-            const games = data.response.games;
-            res.send({ games });
-            console.log(games);
-        } else {
-            res.status(404).send({ message: 'Games not found' });
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send({ message: 'Server error' });
-    });
-
-});
-
-
-
-
-// # GetPlayerAchievements (v0001)
-// **Returns a list of achievements for this user by app id**
-// Example URL: http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=440&key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&steamid=76561197972495328
-
-app.get(`/api/steam/achievements/:steamId`, (req, res) => {
-    const steamId = req.params.steamId;
-
-    axios.get(`http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=730&key=${API_KEY}&steamid=${steamId}`)
-    
-    .then(response => {
-        const data = response.data;
-        if (data.playerstats.success === 1) {
-            const achievements = data.playerstats.achievements;
-            res.send({ achievements });
-            console.log(achievements);
-        } else {
-            res.status(404).send({ message: 'Achievements not found' });
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send({ message: 'Server error' });
-    });
-});
-
-
-// get steam level
-// http://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=<steamApiKey>&steamid=<steamID64>
-
-app.get(`/api/steam/level/:steamId`, (req, res) => {
-    const steamId = req.params.steamId;
-    axios.get(`http://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=${API_KEY}&steamid=${steamId}`)
-    .then(response => {
-        const data = response.data;
-        if (data.response.success === 1) {
-            const level = data.response.player_level;
-            res.send({ level });
-            console.log(level);
-        } else {
-            res.status(404).send({ message: 'User not found' });
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send({ message: 'Server error' });
-    });
-});
-    
-
-
-
-
-// # GetPlayerSummaries (v0002)
-// **Returns a list of players and their information**
-
-
-app.get('/api/steam/:username', (req, res) => {
-    const username = req.params.username;
-
-
+// search for a game
+// https://api.steampowered.com/ISteamApps/GetAppList/v2/
+app.get('/api/search', (req, res) => {
+    const { q } = req.query;
     axios
-    .get(`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${API_KEY}&vanityurl=${username}`)
-    .then(response => {
-      const data = response.data;
-      if (data.response.success === 1) {
-        const steamId = data.response.steamid;
-        res.send({ steamId });
-        console.log(steamId);
-      } else {
-        res.status(404).send({ message: 'User not found' });
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(500).send({ message: 'Server error' });
-    });
+      .get("https://api.steampowered.com/ISteamApps/GetAppList/v2/")
+      .then(response => {
+        const apps = response.data.applist.apps.filter(app => (
+          app.name.toLowerCase().includes(q.toLowerCase())
+        )).map(app => ({
+          name: app.name,
+          appid: app.appid
+        }));
+        res.send(apps);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+  
+
+// Counter-strike news API
+// Example URL: http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json
+
+app.get('/api/news/:appid?', (req, res) => {
+    const defaultappid = '730'; // set a default value for the app id
+    const appid = req.params.appid || defaultappid; // use default value if no parameter is provided
+
+    axios.get(`http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${appid}&count=3&maxlength=300&format=json`)
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+});
+
+// app.get('/api/stats/:appId/history', async (req, res) => {
+  app.get('/api/stats/:appid/history', (req, res) => {
+    const appid = req.params.appid
+    axios.get(`https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=${appid}&key=${API_KEY}`)
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+  
+
+
+// Counter-strike stats API
+// Example URL: http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=440
+
+app.get('/api/stats/:appid', (req, res) => {
+    const appid = req.params.appid 
+
+    axios.get(`http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${appid}`)
+
+
+      .then(response => {
+        res.send(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 });
 
 
-app.get('/api/steam/user/:steamId', (req, res) => {
-    const steamId = req.params.steamId;
 
 
-    axios
-    .get(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${API_KEY}&steamids=${steamId}`)
-    .then(response => {
-        const data = response.data;
-        if (data.response.players.length > 0) {
-            const player = data.response.players[0];
-            res.send({ player });
-            console.log(player);
-        } else {
-            res.status(404).send({ message: 'User not found' });
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send({ message: 'Server error' });
-    });
-});
 
 
-//front end will send a request to the server with the username with the following format
-//http://localhost:5000/api/steam/username
+
 
 // ********** 404 and 500 handlers **********
 
@@ -159,6 +104,7 @@ app.use(function(err, req, res, next) {
 // ********** NODE EMOJI **********
 
 const emoji = require('node-emoji');
+
 // node emoji's link https://www.npmjs.com/package/node-emoji
 // spinnerCLI link https://www.npmjs.com/package/cli-spinners
 

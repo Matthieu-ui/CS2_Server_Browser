@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/Matthieu-ui/NERV#readme",
   "dependencies": {
+    "chart.js": "^4.2.1",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "html-react-parser": "^3.0.15"
   }
 }
