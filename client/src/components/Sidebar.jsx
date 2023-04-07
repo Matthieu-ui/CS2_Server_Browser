@@ -1,14 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
-import SearchApps from "./SearchApp";
-import React, { useState } from "react";
+import React from "react";
 
 function Sidebar() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedAppId, setSelectedAppId] = useState(null);
 
-  const handleSelect = (appId) => {
-    setSelectedAppId(appId);
-  };
 
   return (
     <div className="flex h-screen">
@@ -47,22 +41,11 @@ function Sidebar() {
             </Link>
           </div>
 
-
-          <div className="container mx-auto py-8">
-            <SearchApps
-              appId={selectedAppId}
-              searchResults={searchResults}
-              setSearchResults={setSearchResults}
-              onSelect={handleSelect}
-            />
-          </div>
-
-
         </div>
 
       </nav>
-      <div className="flex-1">
-        <Outlet searchResults={searchResults} />
+        <div className="flex-1">
+        <Outlet />
       </div>
     </div>
   );
