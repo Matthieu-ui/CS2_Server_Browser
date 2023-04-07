@@ -33,6 +33,11 @@ function Sidebar() {
             >
               About
             </Link>
+
+            <Link to="/blog" className="block py-2 px-4 text-gray-400 hover:text-white focus:text-white focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
+              Blog
+            </Link>
+            
             <Link
               to="/contact"
               className="block py-2 px-4 text-gray-400 hover:text-white focus:text-white focus:nm-inset-secondary-sm  nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg"

@@ -68,8 +68,9 @@ app.get('/api/news/:appid?', (req, res) => {
 // Example URL: http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=440
 
 app.get('/api/stats/:appid', (req, res) => {
-    const appid = req.params.appid 
 
+    const defaultappid = '730'; // set a default value for the app id
+    const appid = req.params.appid || defaultappid;
     axios.get(`http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${appid}`)
 
 

@@ -63,8 +63,8 @@ const SearchApps = (props) => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <span className="text-gray-600 animate-pulse text-2xl">
-          Loading..
+        <span className="text-gray-600 animate-pulse text-2xl text-center">
+          Searching Steam for "{searchTerm}"
         </span>
         <Icon
           className="text-gray-600 animate-pulse text-2xl"
@@ -96,18 +96,26 @@ const SearchApps = (props) => {
           <p className="m-auto"> Search</p>
         </button>
       </div>
-      <div className="flex flex-col items-center justify-center w-full h-full">
-      {results.length > 0 && (
-        <SearchResult
-          results={results}
-          onSelect={handleSelect}
- 
-          setSearchTerm={setSearchTerm}
 
-        />
-      )}
+
+      <div className="flex flex-col items-center justify-center w-full h-full">
+        {results.length > 0 && (
+          <SearchResult
+            results={results}
+            onSelect={handleSelect}
+            setSearchTerm={setSearchTerm}
+          />
+        )}
+
+        {results.length > 0 && (
+          <p
+            className="text-accent text-center text-xs p-2"
+          >
+            results found: {results.length}
+          </p>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 export default SearchApps;

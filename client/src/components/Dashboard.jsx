@@ -4,30 +4,37 @@ import SearchApps from "./SearchApp";
 
 const Dashboard = () => {
 
+
+
     const [onlinePlayers, setOnlinePlayers] = useState([]);
     const [selectedAppId, setSelectedAppId] = useState(730);
     const [searchResults, setSearchResults] = useState([]);
     const [selectedAppName, setSelectedAppName] = useState("Counter-Strike: Global Offensive");
+
+    //set default selected app to
+    const [selectedOnlinePlayers, setSelectedOnlinePlayers] = useState(0);
    
-  
-
     useEffect(() => {
-        axios.get(`/api/stats/${selectedAppId}`)
+        const defaultAppId = '730'; // set a default value for the app id
+        const appId = selectedAppId || defaultAppId; // use default value if no parameter is provided
+        axios.get(`/api/stats/${appId}`)
             .then(response => {
-  
-                setOnlinePlayers(response.data);    
-
+              
+                setOnlinePlayers(response.data);
+                setSelectedOnlinePlayers(response.data.response.player_count); // set the default selected app to Counter-Strike: Global Offensive
             })
             .catch(error => {
                 console.log(error);
             });
-    }, []);
+    }, [selectedAppId]);
 
-const handleSelect = (appId, appName) => {
+const handleSelect = (appId, appName, onlinePlayers) => {
     console.log("Selected App ID: ", appId);
     console.log("Selected App Name: ", appName);
+    console.log("Selected App Online Players: ", onlinePlayers);
   setSelectedAppId(appId);
   setSelectedAppName(appName);
+  setSelectedOnlinePlayers(onlinePlayers);
 
 };
 
@@ -45,6 +52,8 @@ const handleSelect = (appId, appName) => {
                                 appName={selectedAppName}
                                 setSelectedAppId={setSelectedAppId}
                                 setSelectedAppName={setSelectedAppName}
+                                setSelectedOnlinePlayers={setSelectedOnlinePlayers}
+                               
 
                             />
 
@@ -62,6 +71,11 @@ const handleSelect = (appId, appName) => {
                                     selectedAppName
                                 }</span>
                             </h2>
+
+                            <h2 className="text-white text-xs mb-2">Users Online:
+                                <span className="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers}</span>
+                            </h2>
+
 
                             <img
                                 src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}

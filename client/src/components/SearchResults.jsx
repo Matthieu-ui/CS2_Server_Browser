@@ -16,9 +16,8 @@ const SearchResult = ({
     try {
       const response = await fetch(`/api/stats/${appId}`);
       const data = await response.json();
-      const playerCount = data.response.player_count;
-      console.log("player count: ", playerCount);
-      onSelect(appId, name); // update selected app ID, name, and player count for 
+      const onlinePlayers = data.response.player_count;
+      onSelect(appId, name, onlinePlayers); // update selected app ID, name, and player count for 
       
     } catch (error) {
       console.log(error);
