@@ -6,6 +6,7 @@ import DetailView from './routes/DetailView'
 import Layout from './routes/Layout'
 import About from './components/About'
 import Contact from './components/Contact'
+import Blog from './components/Blog'
 import Footer from './components/Footer'
 
 
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Route path="/" element={<Layout />}>
       <Route index={true} element={<App />} />
       <Route path="about" element={<About />} />
+      <Route path="blog" element={<Blog />} />
       <Route path="contact" element={<Contact />} />
     </Route>
     <Route index={false} path="#" element={<DetailView />} />

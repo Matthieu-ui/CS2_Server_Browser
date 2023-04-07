@@ -1,8 +1,9 @@
-import SearchResult from "./SearchResults";
-import { Icon } from "@iconify/react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { debounce } from 'lodash';
+import { Icon } from "@iconify/react";
+import SearchResult from "./SearchResults";
+
+
 
 const SearchApps = (props) => {
   const [results, setResults] = useState([]);
@@ -10,6 +11,18 @@ const SearchApps = (props) => {
   const [error, setError] = useState(null);
   const [timeoutId, setTimeoutId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+
+
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
 
   useEffect(() => {
     return () => {
@@ -24,7 +37,8 @@ const SearchApps = (props) => {
       const response = await axios.get(`/api/search?q=${searchTerm}`);
       const appData = response.data.map((app) => ({
         name: app.name,
-        appid: app.appid
+        appId: app.appid,
+        onlinePlayers: app.player_count,
       }));
       setResults(appData);
       setLoading(false);
@@ -35,15 +49,22 @@ const SearchApps = (props) => {
     }
   }, 1000);
 
-  const handleSelect = (appId) => {
-    props.onSelect(appId);
+  const handleSelect = (appId, appName, onlinePLayers) => {
+    props.onSelect(appId, appName, onlinePLayers);
+    setSearchTerm("");
+    setResults([]);
+    return {
+      appId,
+      name: appName,
+      onlinePlayers: onlinePLayers
+    };
   };
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <span className="text-gray-600 animate-pulse text-2xl">
-          Loading..
+        <span className="text-gray-600 animate-pulse text-2xl text-center">
+          Searching Steam for "{searchTerm}"
         </span>
         <Icon
           className="text-gray-600 animate-pulse text-2xl"
@@ -56,7 +77,6 @@ const SearchApps = (props) => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
@@ -73,27 +93,29 @@ const SearchApps = (props) => {
           className=" text-center mt-2 w-full inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white nm-convex-indigo-sm nm-flat-indigo-600-xs p-2 hover:nm-inset-indigo-700-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           onClick={handleSearch}
         >
-
-          <p className="m-auto"> Search
-          </p>
+          <p className="m-auto"> Search</p>
         </button>
       </div>
+
+
       <div className="flex flex-col items-center justify-center w-full h-full">
-      
-      {results.length > 0 && (
-        <SearchResult
-          results={results}
-          onSelect={handleSelect}
-          setSearchTerm={setSearchTerm}
-          selectedAppId={props.selectedAppId}
-          setOnlinePlayersData={props.setOnlinePlayersData}
-        />
-      )}
+        {results.length > 0 && (
+          <SearchResult
+            results={results}
+            onSelect={handleSelect}
+            setSearchTerm={setSearchTerm}
+          />
+        )}
+
+        {results.length > 0 && (
+          <p
+            className="text-accent text-center text-xs p-2"
+          >
+            results found: {results.length}
+          </p>
+        )}
       </div>
     </div>
   );
 };
-export default SearchApps;  
-
-
-
+export default SearchApps;
