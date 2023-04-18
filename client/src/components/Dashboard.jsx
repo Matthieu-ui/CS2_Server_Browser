@@ -13,13 +13,13 @@ const Dashboard = () => {
 
     //set default selected app to
     const [selectedOnlinePlayers, setSelectedOnlinePlayers] = useState(0);
-   
+
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
         const appId = selectedAppId || defaultAppId; // use default value if no parameter is provided
         axios.get(`/api/stats/${appId}`)
             .then(response => {
-              
+
                 setOnlinePlayers(response.data);
                 setSelectedOnlinePlayers(response.data.response.player_count); // set the default selected app to Counter-Strike: Global Offensive
             })
@@ -28,18 +28,18 @@ const Dashboard = () => {
             });
     }, [selectedAppId]);
 
-const handleSelect = (appId, appName, onlinePlayers) => {
-    console.log("Selected App ID: ", appId);
-    console.log("Selected App Name: ", appName);
-    console.log("Selected App Online Players: ", onlinePlayers);
-  setSelectedAppId(appId);
-  setSelectedAppName(appName);
-  setSelectedOnlinePlayers(onlinePlayers);
+    const handleSelect = (appId, appName, onlinePlayers) => {
+        // console.log("Selected App ID: ", appId);
+        // console.log("Selected App Name: ", appName);
+        // console.log("Selected App Online Players: ", onlinePlayers);
+        setSelectedAppId(appId);
+        setSelectedAppName(appName);
+        setSelectedOnlinePlayers(onlinePlayers);
 
-};
+    };
 
     return (
-        <div className="flex-1 flex flex-col overflow-hidden h-screen">
+        <div className="flex-1 flex flex-col h-screen">
             <div className="flex-1 flex flex-col">
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
                     <div className="flex flex-col md:flex-row md:gap-3 m-5">
@@ -53,29 +53,24 @@ const handleSelect = (appId, appName, onlinePlayers) => {
                                 setSelectedAppId={setSelectedAppId}
                                 setSelectedAppName={setSelectedAppName}
                                 setSelectedOnlinePlayers={setSelectedOnlinePlayers}
-                               
-
                             />
 
-          
+
                         </div>
                         <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3 text-center">
 
-                            <h2 className="text-white text-xs">App ID: 
+                            <h2 className="text-white text-xs">App ID:
                                 <span className="text-accent font-bold p-1">{selectedAppId}</span>
 
                             </h2>
 
                             <h2 className="m-2 text-lg">
-                                <span className="text-accent drop-shadow-sm font-bold">{
-                                    selectedAppName
-                                }</span>
+                                <span className="text-accent drop-shadow-sm font-bold">{selectedAppName}</span>
                             </h2>
 
                             <h2 className="text-white text-xs mb-2">Users Online:
-                                <span className="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers}</span>
+                                <span className="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers.toLocaleString()}</span>
                             </h2>
-
 
                             <img
                                 src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
@@ -83,15 +78,25 @@ const handleSelect = (appId, appName, onlinePlayers) => {
                                 className=" mx-auto border rounded-lg nm-convex-primary-lg"
                             />
                         </div>
+
                         <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3">
-                            data type component
+                
                         </div>
                     </div>
 
-                    <div className="container px-6 py-8 md:w-2/3">
-                      
+                    <div className="container px-6 py-8 w-full ">
+                        <div className="nm-convex-secondary-sm container mx-auto p-5">
+                            graphical data component
+                        </div>
+                    </div>
 
-                    
+                    <div className="container px-6 py-8 w-full ">
+
+                        {/*steamNews*/}
+                        <div className="nm-convex-secondary-sm container mx-auto p-5">
+                            steam news component
+                        </div>
+
                     </div>
                 </main>
             </div>

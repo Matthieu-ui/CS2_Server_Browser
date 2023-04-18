@@ -63,7 +63,7 @@ const SearchApps = (props) => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <span className="text-gray-600 animate-pulse text-2xl text-center">
+        <span className="text-gray-600 animate-pulse text-xs text-center">
           Searching Steam for "{searchTerm}"
         </span>
         <Icon
