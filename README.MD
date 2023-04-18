@@ -1,8 +1,10 @@
 # Web Development Final Project - *Name of App Here*
 
-Submitted by: **Your Name Here**
+Submitted by: **Matthieu Felker**
 
-This web app: **insert description**
+**The SteamStatsBlog repository is a platform that allows users to search for games and access related data. Users can also leave comments and upvote their favorite games and data. It is a comprehensive tool for gamers to stay informed and engaged with their favorite games.**
+
+
 
 Time spent: **X** hours spent in total
 
@@ -56,7 +58,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2023] [Matthieu Felker]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
