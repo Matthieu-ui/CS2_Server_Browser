@@ -8,20 +8,23 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Blog from './components/Blog'
 import Footer from './components/Footer'
+import Dashboard from './components/Dashboard'
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <Routes>
-    <Route path="/" element={<Layout />}>
-      <Route index={true} element={<App />} />
+    <Route element={<Layout />}>
+      <Route path='/' element={<Dashboard />} />
       <Route path="about" element={<About />} />
       <Route path="blog" element={<Blog />} />
       <Route path="contact" element={<Contact />} />
-    </Route>
+
     <Route index={false} path="#" element={<DetailView />} />
+    </Route>
   </Routes>
  
   <Footer/>
