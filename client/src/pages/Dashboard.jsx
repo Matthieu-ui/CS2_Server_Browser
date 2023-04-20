@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SearchApps from "./SearchApp";
+import SearchApps from "../components/SearchApp";
+
 
 const Dashboard = () => {
 
@@ -75,7 +76,7 @@ const Dashboard = () => {
                             <img
                                 src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
                                 alt="selected app"
-                                className=" mx-auto border rounded-lg nm-convex-primary-lg"
+                                className=" mx-auto border rounded-lg nm-convex-secondary-lg"
                             />
                         </div>
 
@@ -94,7 +95,7 @@ const Dashboard = () => {
 
                         {/*steamNews*/}
                         <div className="nm-convex-secondary-sm container mx-auto p-5">
-                            steam news component
+                         
                         </div>
 
                     </div>

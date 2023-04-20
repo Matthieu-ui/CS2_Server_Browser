@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
-import DetailView from './routes/DetailView'
+
 import Layout from './routes/Layout'
-import About from './components/About'
-import Contact from './components/Contact'
-import Blog from './components/Blog'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Blog from './pages/Blog'
 import Footer from './components/Footer'
-import Dashboard from './components/Dashboard'
+import Dashboard from './pages/Dashboard'
+
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -16,20 +16,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <Routes>
-    <Route element={<Layout />}>
-      <Route path='/' element={<Dashboard />} />
-      <Route path="about" element={<About />} />
-      <Route path="blog" element={<Blog />} />
-      <Route path="contact" element={<Contact />} />
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
+      </Route>
 
-    <Route index={false} path="#" element={<DetailView />} />
-    </Route>
-  </Routes>
- 
-  <Footer/>
+    </Routes>
 
-</BrowserRouter>
+  </BrowserRouter>
 )
 
 // Path: cryptohustlelite\src\App.jsx

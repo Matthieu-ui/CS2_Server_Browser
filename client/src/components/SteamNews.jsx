@@ -3,19 +3,31 @@ import axios from 'axios';
 import parse from 'html-react-parser';
 
 function SteamNews() {
+
     const [news, setNews] = useState([]);
     const [selectedAppId, setSelectedAppId] = useState(null);
+    const [selectedAppName, setSelectedAppName] = useState("Counter-Strike: Global Offensive");
 
   
     useEffect(() => {
-      axios.get('/api/news')
+      axios.get(`/api/news/${selectedAppId}`)
         .then(response => {
           setNews(response.data.appnews.newsitems);
         })
         .catch(error => {
           console.log(error);
         });
-    }, []);
+    }, [selectedAppId]);
+
+ 
+
+    const handleSelect = (appId, appName) => {
+      // console.log("Selected App ID: ", appId);
+      // console.log("Selected App Name: ", appName);
+      setSelectedAppId(appId);
+      setSelectedAppName(appName);
+    };
+
   
     return (
       <div className="flex-1 flex flex-col">

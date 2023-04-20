@@ -18,10 +18,14 @@
   },
   "homepage": "https://github.com/Matthieu-ui/NERV#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.21.0",
     "chart.js": "^4.2.1",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "html-react-parser": "^3.0.15"
+    "html-react-parser": "^3.0.15",
+    "node-steam-openid": "^1.0.1",
+    "openid-client": "^5.4.0",
+    "passport": "^0.6.0"
   }
 }

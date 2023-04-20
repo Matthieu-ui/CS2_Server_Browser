@@ -82,15 +82,15 @@ const SearchApps = (props) => {
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex items-center justify-center w-full flex-col p-2">
         <input
-          className="text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-sm cursor-pointer w-full focus:outline-none focus:ring focus:ring-primary-500 focus:ring-opacity-50"
+          className="text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-sm cursor-pointer w-full focus:outline-none focus:ring focus:ring-accent "
           type="text"
-          placeholder="Search apps"
+          placeholder="Search Apps"
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
         />
 
         <button
-          className=" text-center mt-2 w-full inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white nm-convex-indigo-sm nm-flat-indigo-600-xs p-2 hover:nm-inset-indigo-700-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className=" text-center mt-2 w-full inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
           onClick={handleSearch}
         >
           <p className="m-auto"> Search</p>

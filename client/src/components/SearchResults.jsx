@@ -37,16 +37,16 @@ const SearchResult = ({
         {results.length > 0 && (
           <select className="
           w-full text-white rounded-md
-          nm-concave-primary-lg m-1 p-2" onChange={(e) => handleClick(e.target.value, e.target.selectedOptions[0].text)}>
+          nm-convex-secondary-lg m-1 p-2 focus:outline-none focus:ring focus:ring-accent " onChange={(e) => handleClick(e.target.value, e.target.selectedOptions[0].text)}>
             <option
             className=" text-black
             bg-gray-500
-            nm-concave-primary-lg m-1 p-2 w-full"
+            nm-concave-secondary-sm m-1 p-2 w-full"
             value="0">Select Result</option>
 
             {results.slice(0, 25).map((result) => (
               <option
-              className=" text-black nm-concave-primary-lg m-1 p-2 w-full"
+              className=" text-black nm-concave-secondary-lg m-1 p-2 w-full"
               key={uuidv4()} value={result.appId}>
                 {result.name} 
               </option>

@@ -4,14 +4,18 @@ const cors = require("cors");
 const axios = require('axios');
 
 
+
+
 // ********** MIDDLEWARE **********
 app.use(cors());
 require('dotenv').config()
 API_KEY = process.env.VITE_APP_API_KEY
 
 
+// ********** openID **********
 
-// ********** ROUTES **********
+
+
 
 // search for a game
 // https://api.steampowered.com/ISteamApps/GetAppList/v2/
@@ -32,12 +36,13 @@ app.get('/api/search', (req, res) => {
         console.log(error);
       });
   });
-  
 
-// Counter-strike news API
+
+
+
 // Example URL: http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json
 
-app.get('/api/news/:appid?', (req, res) => {
+app.get('/api/news/:appid', (req, res) => {
     const defaultappid = '730'; // set a default value for the app id
     const appid = req.params.appid || defaultappid; // use default value if no parameter is provided
 
@@ -64,9 +69,7 @@ app.get('/api/news/:appid?', (req, res) => {
   
 
 
-// Counter-strike stats API
-// Example URL: http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=440
-
+// Counter-strike stats API num players
 app.get('/api/stats/:appid', (req, res) => {
 
     const defaultappid = '730'; // set a default value for the app id
@@ -81,10 +84,6 @@ app.get('/api/stats/:appid', (req, res) => {
         console.log(error);
       });
 });
-
-
-
-
 
 
 

@@ -39,6 +39,10 @@ function Sidebar() {
             <Link to="/blog" className="block py-2 px-4 text-accent hover:brightness-150 focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
               Blog
             </Link>
+
+            <Link to="/account" className="block py-2 px-4 text-accent hover:brightness-150 focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
+            Account
+            </Link>
             
             <Link
               to="/contact"
