@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import Footer from './components/Footer'
 import Dashboard from './pages/Dashboard'
+import PostView from './pages/PostView'
 
 
 
@@ -22,7 +23,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/postview/:id" element={<PostView />} />
       </Route>
+
+    
 
     </Routes>
 
