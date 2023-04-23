@@ -72,6 +72,7 @@ const PostList = ({ posts }) => {
                 className="flex flex-row rounded-sm items-center text-gray-300 px-4 hover:text-gray-400 nm-flat-secondary-sm hover:nm-inset-secondary-lg"
                 onClick={handleReplyButton}
               >
+              
                 <Icon icon="carbon:reply" className="w-6 h-6 transform scale-x-[-1]" />
                 <span className="align-middle p-2 text-xs">Reply</span>
               </button>

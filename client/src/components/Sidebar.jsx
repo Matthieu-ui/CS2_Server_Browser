@@ -5,9 +5,10 @@ function Sidebar() {
 
 
   return (
-    <div className="flex h-max">
+    <div className="flex">
       <nav className="bg-primary w-36 pr-1">
-        <div className="flex items-center justify-center h-16 text-xl font-bold bg-gray-800 nm-inset-primary-sm p-3 rounded-br-lg">
+      
+      <div className="flex items-center justify-center h-16 text-xl font-bold bg-gray-800 nm-inset-primary-sm p-3 rounded-br-lg">
         <img
         src="isoblokfurbish.png"
   
@@ -55,7 +56,7 @@ function Sidebar() {
         </div>
 
       </nav>
-        <div className="flex-1">
+        <div className="flex flex-col flex-grow">
         <Outlet />
       </div>
     </div>

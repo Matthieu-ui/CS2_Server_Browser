@@ -12,11 +12,11 @@ const Footer = () => {
           </a>{" "}
           The source code is licensed<a href="#"> MIT</a>.
           <span className="flex items-center ml-4">
-            Powered by {""}
+            Powered by but not affiliated with {""}
             <a href="#">
               <Icon
                 icon="fa6-brands:square-steam"
-                className="text-gray-300 w-10 h-10 nm-convex-primary-sm align-middle m-2 hover:text-white"
+                className="text-gray-300 w-5 h-5 nm-convex-primary-sm align-middle m-2 hover:text-white"
               />
             </a>
           </span>

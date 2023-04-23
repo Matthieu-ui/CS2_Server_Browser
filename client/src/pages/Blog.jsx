@@ -57,8 +57,8 @@ const Blog = () => {
 
 
   return (
-    <div className="flex-1 flex flex-col h-screen">
-      <div className="flex-1 flex flex-col">
+    <div className="flex h-screen overflow-scroll bg-secondary">
+    <div className="flex-1 flex flex-col">
         <div className="header flex nm-concave-primary-sm p-5 flex-col">
           <span className="flex items-center">
             <Icon
@@ -80,7 +80,38 @@ const Blog = () => {
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
           <div className="flex flex-col md:flex-row md:gap-3 m-5">
             <div className="flex flex-col w-2/3 sm:w-full md:w-2/3 lg:w-2/3 p-5">
-              <div className="text-relative rounded-md w-full position relative lg:w-full p-5 mx-auto">
+
+            <div className="flex flex-col w-full sm:w-full md:w-full lg:w-full p-5 ">
+            <span className="flex items-center">
+         
+  
+          
+            <button
+              className="m-5 text-center w-20 justify-center inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+              onClick={handlePostButton}
+            >
+              {buttonText}
+            </button>
+
+            <h3 className="text-md font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
+            Create a new post
+          </h3>
+
+            </span>
+
+            <div
+              className={`p-5 transition-transform duration-500 ease-in-out  ${showNewPost
+                ? "transform translate-x-0"
+                : "transform translate-y-full"
+                } ${showNewPost
+                  ? "opacity-100 pointer-events-auto max-h-auto"
+                  : "opacity-0 pointer-events-none max-h-0"
+                }`}
+            >
+              <NewPost />
+            </div>
+          </div>
+              <div className="text-relative rounded-md mb-20 w-full position relative lg:w-full p-5 mx-auto">
                 {isLoading ? (
                   <div className="flex flex-col gap-3">
                     <div className="flex flex-col">
@@ -95,7 +126,7 @@ const Blog = () => {
                 )}
               </div>
 
-              <Comments comments={comments} postId={postId}/>
+             
                 
 
               
@@ -117,27 +148,7 @@ const Blog = () => {
             </div>
           </div>
 
-          <div className="flex flex-col w-full sm:w-full md:w-full lg:w-full p-5 ">
-
-            <button
-              className="m-5 text-center w-20 justify-center inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
-              onClick={handlePostButton}
-            >
-              {buttonText}
-            </button>
-
-            <div
-              className={`p-5 transition-transform duration-500 ease-in-out  ${showNewPost
-                ? "transform translate-x-0"
-                : "transform translate-y-full"
-                } ${showNewPost
-                  ? "opacity-100 pointer-events-auto max-h-auto"
-                  : "opacity-0 pointer-events-none max-h-0"
-                }`}
-            >
-              <NewPost />
-            </div>
-          </div>
+         
         </main>
       </div>
     </div>

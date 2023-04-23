@@ -9,7 +9,7 @@ import Blog from './pages/Blog'
 import Footer from './components/Footer'
 import Dashboard from './pages/Dashboard'
 import PostView from './pages/PostView'
-
+import Account from './pages/Account'
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,16 +18,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route element={<Layout />}>
+      <Route
+      className="flex flex-col justify-between h-screen"
+      element={<Layout />}> 
         <Route path="/" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/account" element={<Account />} />
+
         <Route path="/postview/:id" element={<PostView />} />
       </Route>
-
-    
-
     </Routes>
 
   </BrowserRouter>

@@ -1,11 +1,12 @@
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
-function Layout({ children }) {
+
+function Layout({ children }) { //children are rendered from the router
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="">
       <Sidebar />
- <div className="flex-1 ml-48 min-h-screen">{children}</div>
-      <Footer className="mt-auto" />
+ <div className="">{children}</div>
+      <Footer className="" />
     </div>
     );
   }

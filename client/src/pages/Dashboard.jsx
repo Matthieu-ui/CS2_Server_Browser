@@ -40,7 +40,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="flex-1 flex flex-col h-screen">
+        <div className="flex h-screen overflow-scroll bg-secondary">
             <div className="flex-1 flex flex-col">
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
                     <div className="flex flex-col md:flex-row md:gap-3 m-5">

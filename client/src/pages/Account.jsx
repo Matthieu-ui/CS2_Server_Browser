@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 
-const Contact = () => {
+const Account = () => {
 
 
 
@@ -14,17 +14,16 @@ const Contact = () => {
         <div className="header flex nm-concave-primary-sm p-5 flex-col">
           <span className="flex items-center">
             <Icon
-              icon="material-symbols:connect-without-contact-outline-rounded"
+              icon="ic:twotone-verified-user"
               className="stroke-1 stroke-red-400 text-accent m-2 w-10 h-10 align-middle"
             />
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
-Contact
-
-</h1>
+              Account
+            </h1>
           </span>
           <div className="flex-1 flex text-sm">
             <p className="mt-1 text-orange-600 w-2/3 opacity-80">
-Contact information for Steam Search Blog. Want to get in touch? Here's how.
+           This is the account page. View your steam account details and your blog posts.
             </p>
           </div>
         </div>
@@ -42,4 +41,4 @@ Contact information for Steam Search Blog. Want to get in touch? Here's how.
   );
 };
 
-export default Contact;
+export default Account;
