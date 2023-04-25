@@ -38,8 +38,14 @@ const NewPost = () => {
         setBody('');
         setUsername('');
 
-        //refresh posts
-        fetchPosts();
+        const refreshPage = () => {
+            window.location.reload();
+        }
+        refreshPage();
+        
+
+
+
         
     };
 
@@ -56,6 +62,8 @@ const NewPost = () => {
 
     useEffect(() => {
         fetchPosts();
+
+
     }, []);
 
 
@@ -120,6 +128,7 @@ const NewPost = () => {
 
                     className="mx-auto flex items-center mt-2 w-20 justify-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent align-middle"
                     type="submit"
+                    onClick={handleSubmit}
                 >
                     Submit <Icon
                         className="ml-2"
