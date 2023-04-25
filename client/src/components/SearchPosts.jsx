@@ -23,18 +23,19 @@ const SearchPosts = () => {
 
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center justify-center">
        
-            <form className="text-relative rounded-md  p-4 mx-auto text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent nm-convex-secondary-sm "
+            <form className="text-relative rounded-md  p-4 mx-auto text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                 onSubmit={e => {
                     e.preventDefault()
                     searchPosts()
                 }
                 }
             >
-            <h1
+            <div className="flex flex-col mb-6 justify-center items-center">
+            <h2
             className="text-lg text-accent font-bold text-center"
-            > Search Posts</h1>
+            > Search Posts</h2>
                 <input
                 className="m-2 text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-sm cursor-pointer focus:outline-none focus:ring focus:ring-accent
                 w-2/3
@@ -56,6 +57,8 @@ const SearchPosts = () => {
                 <button
                 className="flex items-center mt-2 w-20 justify-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent align-middle"
                 type="submit">Search</button>
+
+            </div>
             </form>
 
         </div>

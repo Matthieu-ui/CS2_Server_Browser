@@ -8,9 +8,9 @@ import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import Footer from './components/Footer'
 import Dashboard from './pages/Dashboard'
-import PostView from './pages/PostView'
+import PostView from './routes/PostView'
 import Account from './pages/Account'
-
+import PostViewPage from './pages/PostViewPage'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -27,7 +27,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/blog" element={<Blog />} />
         <Route path="/account" element={<Account />} />
 
-        <Route path="/postview/:id" element={<PostView />} />
+        {/* routes */}
+        <Route path="/posts/:id" element={<PostViewPage />} />
       </Route>
     </Routes>
 

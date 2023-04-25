@@ -17,7 +17,7 @@ function Sidebar() {
 
 
       <span className=" font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm">
-        SSB{" "}
+        SDBB{" "}
 
       </span>
         </div>

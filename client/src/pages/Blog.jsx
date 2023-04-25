@@ -4,7 +4,7 @@ import { supabase } from "../../supaBaseClient";
 import NewPost from "../components/NewPost";
 import SearchPosts from "../components/SearchPosts";
 import PostList from "../components/PostList";
-import Comments from "../components/Comments";
+
 
 const Blog = () => {
   const [showNewPost, setShowNewPost] = useState(false);
@@ -12,19 +12,20 @@ const Blog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
-  //comments
-  const [comments, setComments] = useState([]);
-  const [postId, setPostId] = useState("");
 
 
 
   const buttonText = showNewPost ? (
     <div className="flex flex-col m-2">
-      <Icon icon="ic:baseline-edit-off" />
+      <Icon icon="ic:baseline-edit-off"
+className="w-6 h-6 text-white"
+      />
     </div>
   ) : (
     <div className="flex flex-col m-2">
-      <Icon icon="material-symbols:edit" />
+      <Icon icon="material-symbols:edit"
+      className="w-6 h-6 text-white"
+      />
     </div>
   );
 
@@ -33,7 +34,7 @@ const Blog = () => {
       setIsLoading(true);
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, body, created_at, updated_at")
+        .select("id, title, body, created_at")
         .order("created_at", { ascending: false });
 
       if (error) {
@@ -45,7 +46,9 @@ const Blog = () => {
     };
     setTimeout(() => {
       postList();
-    }, 1000);
+    }
+    , 1000);
+
   }, []);
 
   const handlePostButton = () => {
@@ -58,7 +61,7 @@ const Blog = () => {
 
   return (
     <div className="flex h-screen overflow-scroll bg-secondary">
-    <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col">
         <div className="header flex nm-concave-primary-sm p-5 flex-col">
           <span className="flex items-center">
             <Icon
@@ -79,38 +82,57 @@ const Blog = () => {
 
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
           <div className="flex flex-col md:flex-row md:gap-3 m-5">
-            <div className="flex flex-col w-2/3 sm:w-full md:w-2/3 lg:w-2/3 p-5">
 
-            <div className="flex flex-col w-full sm:w-full md:w-full lg:w-full p-5 ">
-            <span className="flex items-center">
-         
-  
-          
-            <button
-              className="m-5 text-center w-20 justify-center inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
-              onClick={handlePostButton}
-            >
-              {buttonText}
-            </button>
+              <div className="flex flex-col w-full">
 
-            <h3 className="text-md font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
-            Create a new post
-          </h3>
+                <div className="flex flex-col gap-3">
 
-            </span>
+ 
+                <span className="flex flex-row items-center justify-center gap-3">
 
-            <div
-              className={`p-5 transition-transform duration-500 ease-in-out  ${showNewPost
-                ? "transform translate-x-0"
-                : "transform translate-y-full"
-                } ${showNewPost
-                  ? "opacity-100 pointer-events-auto max-h-auto"
-                  : "opacity-0 pointer-events-none max-h-0"
-                }`}
-            >
-              <NewPost />
-            </div>
-          </div>
+
+                <span className="flex flex-row items-center justify-start gap-3">
+                  <button
+                    className="m-5 text-center p-4 w-30 justify-center inline-flex  border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                    onClick={handlePostButton}
+                  >
+
+           
+                    {buttonText}
+                  </button>
+
+                  </span>
+
+
+                  
+
+
+                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col">
+                    <SearchPosts />
+                  </div>
+                </div>
+
+                </span>
+
+                <div
+                  className={`p-5 transition-transform duration-500 ease-in-out  ${showNewPost
+                    ? "transform translate-x-0"
+                    : "transform translate-y-full"
+                    } ${showNewPost
+                      ? "opacity-100 pointer-events-auto max-h-auto"
+                      : "opacity-0 pointer-events-none max-h-0"
+                    }`}
+                >
+                  <NewPost />
+
+
+                </div>
+             
+
+              </div>
+
+              <div className="flex flex-col w-full">
               <div className="text-relative rounded-md mb-20 w-full position relative lg:w-full p-5 mx-auto">
                 {isLoading ? (
                   <div className="flex flex-col gap-3">
@@ -124,31 +146,11 @@ const Blog = () => {
                 ) : (
                   <PostList posts={posts} />
                 )}
-              </div>
 
-             
-                
-
-              
-              
-
-            </div>
-
-            {/* SEARCH CONTAINER *RIGHT SIDE* */}
-            <div className="flex flex-col w-1/3 sm:w-full md:w-1/3 lg:w-1/3 p-5 ">
-              <SearchPosts />
-              <div className="flex flex-col w-full sm:w-full md:w-full lg:w-full p-5 ">
-                <div className="text-relative rounded-md w-full position relative lg:w-full p-5 mx-auto">
-                  <div className="flex flex-row gap-3">
-
-
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-
-         
+          </div>
         </main>
       </div>
     </div>

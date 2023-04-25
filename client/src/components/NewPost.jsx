@@ -1,68 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { supabase } from "../../supaBaseClient"
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 
+import { v4 as uuidv4 } from "uuid";
+
+
+
 const NewPost = () => {
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [username, setUsername] = useState('');
 
-    const [title, setTitle] = useState('')
-    const [body, setbody] = useState('')
-    const [tags, setTags] = useState('')
+    const handleTitleChange = (e) => setTitle(e.target.value);
+    const handleBodyChange = (e) => setBody(e.target.value);
+    const handleUsernameChange = (e) => setUsername(e.target.value);
 
-
-
-    const createNewPost = async () => {
-
-        const title = document.getElementById("title").value
-        const body = document.getElementById("body").value
-
-    
-
-        const { data, error } = await supabase
-        .from('posts')
-        .insert([
-          { title, body }
-        ])
-      
-       .select()
-
-       if (error) {
-        console.log(error)
-        
-      } else if (data.length > 0) {
-        console.log("post created successfully", data)
-      }
-
-    }
-
-
-    const createNewTags = async () => {
-
-        const name = document.getElementById("tags").value.split('#').filter(tag => tag.length > 0);
-        const { data, error } = await supabase
-        .from('tags')
-        .insert([
-            { name }
-        ])
-
-        .select()
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { data, error } = await supabase.from('posts').insert([
+            {
+                title,
+                body,
+                username,
+                editKey: uuidv4(),
+            },
+        ]);
         if (error) {
-            console.log(error)
-        } else if (data.length > 0) {
-            console.log("tags created successfully", data)
+            console.log('Error creating post:', error.message);
+        } else {
+            console.log('Post created successfully!');
+            fetchPosts();
         }
-    }
 
+        //reset form
+        setTitle('');
+        setBody('');
+        setUsername('');
 
+        //refresh posts
+        fetchPosts();
+        
+    };
 
+    const fetchPosts = async () => {
+        const { data: posts, error } = await supabase.from('posts').select('*');
+        if (error) {
+            console.log('Error fetching posts:', error.message);
+        } else {
+            setPosts(posts);
+        }
+    };
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-        alert("Are you sure you want to submit?")
-        createNewPost()
-        createNewTags()
-    }
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
 
     return (
         <div>
@@ -72,8 +67,8 @@ const NewPost = () => {
 
                 onSubmit={e => {
                     e.preventDefault()
-                    createNewPost()
-                    createNewTags()
+                    handleSubmit(e)
+
                 }}
             >
                 <div className="flex flex-col mb-6 ">
@@ -87,36 +82,36 @@ const NewPost = () => {
                         id="title"
                         placeholder="Title"
                         value={title}
-                        onChange={e => setTitle(e.target.value)}
+                        onChange={handleTitleChange}
                     />
 
                 </div>
                 <div className="flex flex-col mb-6 ">
                     <label className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600" htmlFor="body"></label>
                     <textarea
-                        className="border rounded-md  w-full lg:w-3/4 mx-auto  text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent nm-convex-secondary-lg"
+                        className="block w-full lg:w-3/4 mx-auto mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 nm-convex-secondary-lg"
                         type="text"
+                        rows="4"
                         id="body"
-                        placeholder="body"
+                        placeholder="Enter your text here..."
                         value={body}
-                        onChange={e => setbody(e.target.value)}
+                        onChange={handleBodyChange}
                     />
 
 
                 </div>
-           
-  
 
-                <div className="flex flex-col mb-6">
-                    <label className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600" htmlFor="tags"></label>
+                <div className="flex flex-col mb-6 ">
+                    <label className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600" htmlFor="username"></label>
                     <input
                         className="border rounded-md  w-full lg:w-3/4 mx-auto  text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent nm-convex-secondary-lg"
                         type="text"
-                        id="tags"
-                        placeholder="#tag1 #tag2 #tag3"
-                        value={tags}
-                        onChange={e => setTags(e.target.value)}
+                        id="username"
+                        placeholder="username"
+                        value={username}
+                        onChange={handleUsernameChange}
                     />
+
                 </div>
 
 
@@ -124,7 +119,7 @@ const NewPost = () => {
                 <button
 
                     className="mx-auto flex items-center mt-2 w-20 justify-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent align-middle"
-                    onClick={onSubmit}
+                    type="submit"
                 >
                     Submit <Icon
                         className="ml-2"
