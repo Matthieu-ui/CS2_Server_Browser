@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 const SearchResult = ({
   results,
   onSelect,
-  setSearchTerm
+  setSearchTerm,
+
 }) => {
 
 
@@ -18,7 +19,7 @@ const SearchResult = ({
       const data = await response.json();
       const onlinePlayers = data.response.player_count;
       onSelect(appId, name, onlinePlayers); // update selected app ID, name, and player count for 
-      
+
     } catch (error) {
       console.log(error);
     }

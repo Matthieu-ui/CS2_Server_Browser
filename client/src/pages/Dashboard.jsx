@@ -4,6 +4,7 @@ import SearchApps from "../components/SearchApp";
 import HomeFeed from "../components/HomeFeed";
 import {Link} from "react-router-dom";
 import { Icon } from "@iconify/react";
+import NewsItem from "../components/NewsItem";
 
 const Dashboard = () => {
 
@@ -15,9 +16,6 @@ const Dashboard = () => {
     const [showComments, setShowComments] = useState(false);
     const [postId, setPostId] = useState(null);
 
-
-
-
     const [onlinePlayers, setOnlinePlayers] = useState([]);
     const [selectedAppId, setSelectedAppId] = useState(730);
     const [searchResults, setSearchResults] = useState([]);
@@ -25,6 +23,8 @@ const Dashboard = () => {
 
     //set default selected app to
     const [selectedOnlinePlayers, setSelectedOnlinePlayers] = useState(0);
+
+
 
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
@@ -40,6 +40,28 @@ const Dashboard = () => {
             });
     }, [selectedAppId]);
 
+    //get news
+    const [news, setNews] = useState([]);
+
+  
+
+    useEffect(() => {
+        const defaultAppId = '730'; // set a default value for the app id
+        const appId = selectedAppId || defaultAppId; 
+        axios.get(`/api/news/${appId}`)
+            .then(response => {
+                setNews(response.data.appnews.newsitems);
+                console.log(response.data.appnews.newsitems);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, [selectedAppId]);
+
+
+
+
+
     const handleSelect = (appId, appName, onlinePlayers) => {
         // console.log("Selected App ID: ", appId);
         // console.log("Selected App Name: ", appName);
@@ -47,6 +69,8 @@ const Dashboard = () => {
         setSelectedAppId(appId);
         setSelectedAppName(appName);
         setSelectedOnlinePlayers(onlinePlayers);
+
+
 
     };
 
@@ -105,12 +129,37 @@ const Dashboard = () => {
                             />
                         </div>
 
-                        <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3">
+                        <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3 h-96 overflow-y-scroll">
+
+                            <h2 className="text-white text-xs">News for:
+                                <span className="text-accent font-bold p-1">{selectedAppName}</span>
+
+                            </h2>
+
+                            <div className="flex flex-col">
+                                {news.map((newsItem, index) => (
+                                    <NewsItem
+                                        key={index}
+                                        title={newsItem.title}
+                                        url={newsItem.url}
+                                        author={newsItem.author}
+                                        contents={newsItem.contents}
+                                        date={newsItem.date}
+                                        feedlabel={newsItem.feedlabel}
+                                        feedname={newsItem.feedname}
+                                        feed_type={newsItem.feed_type}
+                                        appid={newsItem.appid}
+                                        img_url={newsItem.img_url}
+                                    />
+                                ))}
+
+                                </div>
+
+
+
                        
-                       <p className="text-accent animate-pulse text-xs mb-2">News component is currently down. Please check back later.</p>
-                       
-                       <Icon icon="material-symbols:construction-rounded" className="text-accent mx-auto h-60 w-60" />
-                         
+                      
+
                     
                 
                         </div>

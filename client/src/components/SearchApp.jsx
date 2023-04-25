@@ -104,6 +104,7 @@ const SearchApps = (props) => {
             results={results}
             onSelect={handleSelect}
             setSearchTerm={setSearchTerm}
+            
           />
         )}
 
