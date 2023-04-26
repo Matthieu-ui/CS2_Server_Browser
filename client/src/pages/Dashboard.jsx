@@ -91,52 +91,69 @@ const Dashboard = () => {
               </p>
             </div>
           </div>
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
-                    <div className="flex flex-col md:flex-row md:gap-3 m-5">
-                        <div className="container mx-auto p-5 w-60">
-                            <SearchApps
-                                appId={selectedAppId}
-                                searchResults={searchResults}
-                                setSearchResults={setSearchResults}
-                                onSelect={handleSelect}
-                                appName={selectedAppName}
-                                setSelectedAppId={setSelectedAppId}
-                                setSelectedAppName={setSelectedAppName}
-                                setSelectedOnlinePlayers={setSelectedOnlinePlayers}
-                            />
-
-
+                <main className="flex-1  bg-secondary max-w-screen-lg mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
+                    <div className="container mx-auto p-5 text-center">
+                    <div class="w-full nm-flat-primary-sm p-2 mb-4">
+                    <img
+                      src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
+                      alt="selected app"
+                      class="border rounded-sm object-cover"
+                    />
+                  </div>
+                    <div class="flex flex-col md:flex-row">
+   
+                    <div class="w-full ">
+                      <div class="container mx-auto p-5 nm-flat-secondary-sm">
+                        <h2 class="text-white text-xs">
+                          App ID:
+                          <span class="text-accent font-bold p-1">{selectedAppId}</span>
+                        </h2>
+                  
+                        <h2 class="m-2 text-lg">
+                          <span class="text-accent drop-shadow-lg font-bold">{selectedAppName}</span>
+                        </h2>
+                  
+                        <h2 class="text-white text-xs">
+                          Users Online:
+                          <span class="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers.toLocaleString()}</span>
+                        </h2>
                         </div>
-                        <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3 text-center">
+                      </div>
+                      
+                      
+                    </div>
+                    <div className="container mx-auto text-center">
+                    <div class="w-full nm-flat-secondary-sm p-2 mb-4">
+                    <SearchApps
+                    appId={selectedAppId}
+                    searchResults={searchResults}
+                    setSearchResults={setSearchResults}
+                    onSelect={handleSelect}
+                    appName={selectedAppName}
+                    setSelectedAppId={setSelectedAppId}
+                    setSelectedAppName={setSelectedAppName}
+                    setSelectedOnlinePlayers={setSelectedOnlinePlayers}
+                />
 
-                            <h2 className="text-white text-xs">App ID:
-                                <span className="text-accent font-bold p-1">{selectedAppId}</span>
 
-                            </h2>
+            </div>
+            </div>
+            
+                    </div>
 
-                            <h2 className="m-2 text-lg">
-                                <span className="text-accent drop-shadow-sm font-bold">{selectedAppName}</span>
-                            </h2>
+                             
+                            
+                  
 
-                            <h2 className="text-white text-xs mb-2">Users Online:
-                                <span className="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers.toLocaleString()}</span>
-                            </h2>
-
-                            <img
-                                src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
-                                alt="selected app"
-                                className=" mx-auto border rounded-lg nm-convex-secondary-lg"
-                            />
-                        </div>
-
-                        <div className="nm-convex-secondary-sm container mx-auto p-5 md:w-1/3 h-96 overflow-y-scroll">
+                        <div className="nm-convex-secondary-sm container mx-auto p-5 w-full">
 
                             <h2 className="text-white text-xs">News for:
                                 <span className="text-accent font-bold p-1">{selectedAppName}</span>
 
                             </h2>
 
-                            <div className="flex flex-col">
+                            <div className="flex flex-col mt-5">
                                 {news.map((newsItem, index) => (
                                     <NewsItem
                                         key={index}
