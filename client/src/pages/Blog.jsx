@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { supabase } from "../../supaBaseClient";
 import NewPost from "../components/NewPost";
-import SearchPosts from "../components/SearchPosts";
+
 import PostList from "../components/PostList";
 
 
@@ -107,11 +107,7 @@ className="w-6 h-6 text-white"
                   
 
 
-                  <div className="flex flex-col gap-3">
-                  <div className="flex flex-col">
-                    <SearchPosts />
-                  </div>
-                </div>
+    
 
                 </span>
 

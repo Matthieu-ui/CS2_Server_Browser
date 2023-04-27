@@ -1,79 +1,78 @@
-import React from "react";
-import { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { supabase } from "../../supaBaseClient"
+import axios from "axios";
+import { Icon } from "@iconify/react";
 
 const SearchPosts = () => {
 
-    const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
+    const [title, setTitle] = useState("");
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
 
 
 
-
-    const searchPosts = async () => {
-        const { data, error } = await supabase
-            .from('posts')
-            .select('*')
-            .eq('title', title)
-            .eq('tags', tags)
-        console.log(data)
-        setSearchParams(data)
-    }
-
-
-
-    return (
-        <div className="flex flex-col items-center justify-center">
-       
-            <form className="text-relative rounded-md  p-4 mx-auto text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                onSubmit={e => {
-                    e.preventDefault()
-                    searchPosts()
-                }
-                }
-            >
-            <div className="flex flex-col mb-6 justify-center items-center">
-            <h2
-            className="text-lg text-accent font-bold text-center"
-            > Search Posts</h2>
-                <input
-                className="m-2 text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-sm cursor-pointer focus:outline-none focus:ring focus:ring-accent
-                w-2/3
-                "
-                    type="text"
-                    placeholder="Search by title"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                />
-              
-                <input
-                className="m-2 text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-sm cursor-pointer  w-2/3 focus:outline-none focus:ring focus:ring-accent "
-                    type="text"
-                    placeholder="Search by tags"
-                    value={tags}
-                    onChange={e => setTags(e.target.value)}
-                />
-
-                <button
-                className="flex items-center mt-2 w-20 justify-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm hover:from-orange-600 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent align-middle"
-                type="submit">Search</button>
-
-            </div>
-            </form>
-
-        </div>
-
-    )
-
-}
-
-export default SearchPosts
-
-        
-
-
-
-
-
-
+    useEffect(() => {
+        const fetchPosts = async () => {
+          setIsLoading(true);
+          const { data, error } = await supabase
+            .from("posts")
+            .select("id, title, body, created_at")
+            .order("created_at", { ascending: false })
+            .ilike("title", `%${title}%`)
+      
     
+          if (error) {
+            setError(error.message);
+          } else {
+            setSearchResults(data);
+          }
+          setIsLoading(false);
+        };
+        fetchPosts();
+      }, [title]);
+    
+      const handleSearch = (e) => {
+        e.preventDefault();
+        fetchPosts();
+      };
+
+      return (
+        <div>
+          <form className="flex flex-row items-center" onSubmit={handleSearch}>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Search posts by title"
+              className="flex-grow p-2 mr-2 border-2 border-gray-300 rounded-md"
+            />
+         
+            <button
+              type="submit"
+              className="p-2 rounded-md bg-accent text-white hover:bg-accent-dark"
+            >
+              <Icon icon="bx:bx-search" className="w-5 h-5" />
+            </button>
+          </form>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : error ? (
+            <div>{error}</div>
+          ) : (
+            <ul>
+              {searchResults.map((post) => (
+                <li key={post.id}>{post.title}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    };
+    
+    export default SearchPosts;
+
+
+
+
+

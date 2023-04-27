@@ -12,12 +12,12 @@ function Sidebar() {
         <img
         src="isoblokfurbish.png"
   
-        className="w-10 h-10 mr-2 drop-shadow-sm hover:drop-shadow-md transition duration-200 ease-in-out hover:scale-110 transform brightness-110"
+        className="w-10 h-10 drop-shadow-sm hover:drop-shadow-md transition duration-200 ease-in-out hover:scale-110 transform brightness-110"
       />
 
 
-      <span className=" font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm">
-        SDBB{" "}
+      <span className="font-bold p-2 text-sm tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-orange-400 to-red-600 drop-shadow-sm">
+        SADBB{" "}
 
       </span>
         </div>
@@ -30,16 +30,17 @@ function Sidebar() {
             >
               Dashboard
             </Link>
+
+            <Link to="/blog" className="block py-2 px-4 text-accent hover:brightness-150 focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
+            Discussion
+          </Link>
             <Link
               to="/about"
               className="block py-2 px-4 text-accent hover:brightness-150  focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg"
             >
-              About
+              SteamData
             </Link>
 
-            <Link to="/blog" className="block py-2 px-4 text-accent hover:brightness-150 focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
-              Blog
-            </Link>
 
             <Link to="/account" className="block py-2 px-4 text-accent hover:brightness-150 focus:brightness-150 focus:nm-inset-secondary-sm nm-concave-primary-xs hover:nm-inset-secondary-lg rounded-tr-lg rounded-br-lg">
             Account

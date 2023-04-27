@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard'
 import PostView from './routes/PostView'
 import Account from './pages/Account'
 import PostViewPage from './pages/PostViewPage'
+import Login from './routes/Login'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -27,8 +28,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/blog" element={<Blog />} />
         <Route path="/account" element={<Account />} />
 
-        {/* routes */}
+        {/* hidden routes */}
         <Route path="/posts/:id" element={<PostViewPage />} />
+        <Route path="/login" element={<Login />} />
+
       </Route>
     </Routes>
 

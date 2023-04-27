@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchApps from "../components/SearchApp";
 import HomeFeed from "../components/HomeFeed";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import NewsItem from "../components/NewsItem";
 
@@ -43,11 +43,11 @@ const Dashboard = () => {
     //get news
     const [news, setNews] = useState([]);
 
-  
+
 
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
-        const appId = selectedAppId || defaultAppId; 
+        const appId = selectedAppId || defaultAppId;
         axios.get(`/api/news/${appId}`)
             .then(response => {
                 setNews(response.data.appnews.newsitems);
@@ -78,73 +78,77 @@ const Dashboard = () => {
 
         <div className="flex h-screen overflow-scroll bg-secondary">
             <div className="flex-1 flex flex-col">
-            <div className="header flex nm-concave-primary-sm p-5 flex-col">
-            <span className="flex items-center">
-              <img className="h-20 w-20 brightness-150" src="isoblokfurb.png" alt="SDDB" />
-              <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm tracking-wider p-5">
-                SDDB
-              </h1>
-            </span>
-            <div className="flex-1 flex text-sm">
-              <p className="mt-1 text-orange-600 w-2/3 opacity-80">
-      Steam Database Blog is a free open-source tool for searching Steam's app and community data. It is not affiliated with Valve or Steam in any way.
-              </p>
-            </div>
-          </div>
+                <div className="header flex nm-concave-primary-sm p-5 flex-col">
+
+                    <span className="flex items-center">
+                        <img className="h-20 w-20 brightness-150" src="isoblokfurb.png" alt="SDDB" />
+                        <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm tracking-wider p-5">
+                            Steam webAPI Discussion Board
+                        </h1>
+                    </span>
+
+                    <div className="flex-1 flex text-sm">
+                        <p className="mt-1 text-orange-600 w-2/3 opacity-80">
+                            The Steam Web API Discussion Board is a free open-source tool for searching Steam's app and community data as well as a discussion board for Steam Web API developers.
+                        </p>
+                    </div>
+                </div>
+
+
                 <main className="flex-1  bg-secondary max-w-screen-lg mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
-                    <div className="container mx-auto p-5 text-center">
-                    <div class="w-full nm-flat-primary-sm p-2 mb-4">
-                    <img
-                      src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
-                      alt="selected app"
-                      class="border rounded-sm object-cover"
-                    />
-                  </div>
-                    <div class="flex flex-col md:flex-row">
-   
-                    <div class="w-full ">
-                      <div class="container mx-auto p-5 nm-flat-secondary-sm">
-                        <h2 class="text-white text-xs">
-                          App ID:
-                          <span class="text-accent font-bold p-1">{selectedAppId}</span>
-                        </h2>
-                  
-                        <h2 class="m-2 text-lg">
-                          <span class="text-accent drop-shadow-lg font-bold">{selectedAppName}</span>
-                        </h2>
-                  
-                        <h2 class="text-white text-xs">
-                          Users Online:
-                          <span class="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers.toLocaleString()}</span>
-                        </h2>
+                        <div className="container mx-auto p-5 text-center">
+                            <div class="w-full nm-flat-primary-sm p-2 mb-4">
+
+                        
+                                <img
+                                    src={`https://steamcdn-a.akamaihd.net/steam/apps/${selectedAppId}/header.jpg`}
+                                    alt="selected app"
+                                    class="border rounded-sm object-cover"
+                                />
+                            </div>
+
+
+                            <div class="flex flex-col md:flex-row">
+                                <div class="w-full ">
+                                    <div class="container mx-auto p-5 nm-flat-secondary-sm">
+
+                                        <h2 class="text-white text-xs">
+                                            App ID:
+                                            <span class="text-accent font-bold p-1">{selectedAppId}</span>
+                                        </h2>
+
+                                        <h2 class="m-2 text-lg">
+                                            <span class="text-accent drop-shadow-lg font-bold">{selectedAppName}</span>
+                                        </h2>
+
+                                        <h2 class="text-white text-xs">
+                                            Users Online:
+                                            <span class="text-green-600 animate-pulse drop-shadow-sm font-bold p-2">{selectedOnlinePlayers.toLocaleString()}</span>
+                                        </h2>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="container mx-auto text-center">
+                                <div class="w-full nm-flat-secondary-sm p-2 mb-4">
+                                    <SearchApps
+                                        appId={selectedAppId}
+                                        searchResults={searchResults}
+                                        setSearchResults={setSearchResults}
+                                        onSelect={handleSelect}
+                                        appName={selectedAppName}
+                                        setSelectedAppId={setSelectedAppId}
+                                        setSelectedAppName={setSelectedAppName}
+                                        setSelectedOnlinePlayers={setSelectedOnlinePlayers}
+                                    />
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      
-                      
-                    </div>
-                    <div className="container mx-auto text-center">
-                    <div class="w-full nm-flat-secondary-sm p-2 mb-4">
-                    <SearchApps
-                    appId={selectedAppId}
-                    searchResults={searchResults}
-                    setSearchResults={setSearchResults}
-                    onSelect={handleSelect}
-                    appName={selectedAppName}
-                    setSelectedAppId={setSelectedAppId}
-                    setSelectedAppName={setSelectedAppName}
-                    setSelectedOnlinePlayers={setSelectedOnlinePlayers}
-                />
 
 
-            </div>
-            </div>
-            
-                    </div>
-
-                             
-                            
-                  
 
                         <div className="nm-convex-secondary-sm container mx-auto p-5 w-full">
 
@@ -169,63 +173,51 @@ const Dashboard = () => {
                                         img_url={newsItem.img_url}
                                     />
                                 ))}
-
-                                </div>
-
-
-
-                       
-                      
-
-                    
-                
+                            </div>
                         </div>
                     </div>
 
-                    
-                        <span
-                            className="ml-10 mt-10 flex items-center mx-5 my-5 text-white text-xl font-bold flex-auto justify-start"
-                        >
-                            <h3
+
+
+                    {/* HOMEFEED*/}
+                    <span
+                        className="ml-10 mt-10 flex items-center mx-5 my-5 text-white text-xl font-bold flex-auto justify-start"
+                    >
+                        <h3
                             className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
-                            Home Feed</h3>
+                            Community Discussion</h3>
 
-                            <Link to="/blog">
-                                <button className=" ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg">
-                                    Create Post
-                                </button>
-                            </Link>
-                       
-                            <Link to="#">
-                                <button className="mx-auto flex items-center ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg align-middle">
+                        <Link to="/blog">
+                            <button className=" ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg">
+                                Create Post
+                            </button>
+                        </Link>
+
+                        <Link to="/login">
+                            <button className="mx-auto flex items-center ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg align-middle">
                                 <Icon icon="ic:twotone-verified-user" className="text-accent mx-auto h-6 w-6" /><p className="p-1"> Link Steam with OpenId</p>
-                                </button>
-                            </Link>
-                            </span>
-                
-                           
+                            </button>
+                        </Link>
+                    </span>
 
 
-                   
-                        {/*home feed*/}
-                    
-                            <HomeFeed   
-                                posts={posts}
-                                setPosts={setPosts}
-                                upvoteCounts={upvoteCounts}
-                                setUpvoteCounts={setUpvoteCounts}
-                                commentCounts={commentCounts}
-                                setCommentCounts={setCommentCounts}
-                                showPosts={showPosts}
-                                setShowPosts={setShowPosts}
-                                showComments={showComments}
-                                setShowComments={setShowComments}
-                                postId={postId}
-                                setPostId={setPostId}
-                            />
+                    {/*home feed*/}
 
-                     
-         
+                    <HomeFeed
+                        posts={posts}
+                        setPosts={setPosts}
+                        upvoteCounts={upvoteCounts}
+                        setUpvoteCounts={setUpvoteCounts}
+                        commentCounts={commentCounts}
+                        setCommentCounts={setCommentCounts}
+                        showPosts={showPosts}
+                        setShowPosts={setShowPosts}
+                        showComments={showComments}
+                        setShowComments={setShowComments}
+                        postId={postId}
+                        setPostId={setPostId}
+                    />
+
                 </main>
             </div>
         </div>

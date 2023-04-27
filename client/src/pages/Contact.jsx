@@ -15,7 +15,7 @@ const Contact = () => {
           <span className="flex items-center">
             <Icon
               icon="material-symbols:connect-without-contact-outline-rounded"
-              className="stroke-1 stroke-red-400 text-accent m-2 w-10 h-10 align-middle"
+              className=" text-accent m-2 w-10 h-10 align-middle"
             />
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
 Contact
@@ -24,7 +24,7 @@ Contact
           </span>
           <div className="flex-1 flex text-sm">
             <p className="mt-1 text-orange-600 w-2/3 opacity-80">
-Contact information for Steam Search Blog. Want to get in touch? Here's how.
+Contact information for SDBB. Want to get in touch? Here's how.
             </p>
           </div>
         </div>

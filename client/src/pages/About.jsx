@@ -15,7 +15,7 @@ const About = () => {
           <span className="flex items-center">
             <Icon
               icon="pepicons-print:info"
-              className="stroke-1 stroke-red-400 text-accent m-2 w-10 h-10 align-middle"
+              className=" text-accent m-2 w-10 h-10 align-middle"
             />
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
               About Steam Search Blog
