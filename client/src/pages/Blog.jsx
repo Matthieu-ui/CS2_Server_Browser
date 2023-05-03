@@ -80,7 +80,7 @@ className="w-6 h-6 text-white"
           </div>
         </div>
 
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
+        <main className="flex-1  bg-secondary  max-w-screen-lg mx-auto">
           <div className="flex flex-col md:flex-row md:gap-3 m-5">
 
               <div className="flex flex-col w-full">
@@ -128,7 +128,7 @@ className="w-6 h-6 text-white"
 
               </div>
 
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col w-full ">
               <div className="text-relative rounded-md mb-20 w-full position relative lg:w-full p-5 mx-auto">
                 {isLoading ? (
                   <div className="flex flex-col gap-3">

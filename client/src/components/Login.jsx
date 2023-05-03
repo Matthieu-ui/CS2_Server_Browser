@@ -12,7 +12,7 @@ const Login = ()=> {
     </small>
     <a
     className="rounded-lg nm-flat-primary-lg hover:nm-flat-secondary-sm"
-    href="http://localhost:5000/auth/steam">
+    href="http://localhost:5000/api/auth/steam">
     <img 
     className="hover:brightness-125 transition duration-500 ease-in-out hover:animate-pulse"
     src="steamAuth.png" alt="Steam Login"/>
@@ -25,3 +25,4 @@ const Login = ()=> {
 };
 
 export default Login;
+

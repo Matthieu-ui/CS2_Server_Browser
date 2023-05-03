@@ -158,7 +158,7 @@ const handleSearch = async (e) => {
 
   return (
     <div>
-    <div>
+    <div className="nm-flat-primary-sm">
           <form className="flex flex-row items-center m-10 w-20" onSubmit={handleSearch}>
           <input
           type="text"
@@ -213,7 +213,7 @@ const handleSearch = async (e) => {
             <div>
 
         {searchResults.map((post) => (
-        <div key={post.id} className="flex flex-col m-2 nm-convex-primary-sm p-2 hover:nm-inset-primary-sm rounded-md duration-200 ease-in-out h-24">
+        <div key={post.id} className="flex flex-col m-2 nm-convex-primary-sm p-2 rounded-md hover:scale-105 duration-200 transform cursor-pointer">
         <div class="flex flex-row items-center justify-between h-500">
             <span className="flex flex-row items-center justify-start gap-3">
               <Link
@@ -230,7 +230,7 @@ const handleSearch = async (e) => {
           </div>
           <div className="flex flex-row items-center mt-7">
 
-            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm  duration-200 ease-in-out">
+            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm "> 
               <Link className=""
                 onClick={() => handleUpvoteButton(post.id)}
               >
@@ -244,7 +244,7 @@ const handleSearch = async (e) => {
               <p className="text-xs text-gray-400 ml-2 mr-1">{upvoteCounts[post.id] || 0} </p>
             </span>
 
-            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm duration-200 ease-in-out">
+            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm ">
               <Link
                 to={`/posts/${post.id}`}
 
@@ -259,7 +259,7 @@ const handleSearch = async (e) => {
 
             </span>
 
-            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm duration-400 ease-in-out">
+            <span className="flex flex-row items-center justify-start nm-flat-primary-sm p-1 hover:nm-inset-primary-sm ">
               <Link
                 to={`/posts/${post.id}`}
                 className=""
