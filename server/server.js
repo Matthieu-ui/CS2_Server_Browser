@@ -21,6 +21,12 @@ const RedisStore = require('connect-redis')(session);
 var passportSteam = require('passport-steam');
 var SteamStrategy = passportSteam.Strategy;
 
+const client = redis.createClient();
+
+
+
+
+
 // Required to get data from user for sessions
 passport.serializeUser((user, done) => {
   done(null, user);
