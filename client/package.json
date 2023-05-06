@@ -2,7 +2,7 @@
   "name": "twt",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://steamapiforum.onrender.com",
   "type": "module",
   "scripts": {
     "dev": "vite",

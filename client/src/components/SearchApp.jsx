@@ -34,7 +34,7 @@ const SearchApps = (props) => {
     setLoading(true);
     try {
       clearTimeout(timeoutId);
-      const response = await axios.get(`/api/search?q=${searchTerm}`);
+      const response = await axios.get(`https://steamapiforum.onrender.com/api/search?q=${searchTerm}`);
       const appData = response.data.map((app) => ({
         name: app.name,
         appId: app.appid,
