@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@passport-next/passport-openid": "^1.0.0",
+    "connect-redis": "^7.0.1",
     "passport-openid": "^0.4.0",
     "passport-steam": "^1.0.17",
     "redis": "^4.6.6",
