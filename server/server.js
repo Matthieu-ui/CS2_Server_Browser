@@ -54,6 +54,8 @@ passport.serializeUser((user, done) => {
 
   // Routes
 
+  
+
  
 
 
@@ -78,6 +80,10 @@ app.get('/api/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
+
+// for deployment
+app.get("/", (req, res) => { res.setHeader('Access-Control-Allow-Credentials', true); res.send("Hello World!"); });
 
 
 
