@@ -17,11 +17,11 @@ API_KEY = process.env.VITE_APP_API_KEY
 var passport = require('passport');
 var session = require('express-session');
 const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
 var passportSteam = require('passport-steam');
 var SteamStrategy = passportSteam.Strategy;
-
 const client = redis.createClient();
+
+const RedisStore = require('connect-redis')(session);
 
 
 
