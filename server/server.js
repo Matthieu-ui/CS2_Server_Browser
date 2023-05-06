@@ -16,6 +16,8 @@ API_KEY = process.env.VITE_APP_API_KEY
 //auth
 var passport = require('passport');
 var session = require('express-session');
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
 var passportSteam = require('passport-steam');
 var SteamStrategy = passportSteam.Strategy;
 
@@ -39,14 +41,13 @@ passport.serializeUser((user, done) => {
    });
   }
  ));
+
  app.use(session({
-  secret: 'Whatever_You_Want',
-  saveUninitialized: true,
+  store: new RedisStore({ client: client }),
+  secret: 'your-secret-key-here',
   resave: false,
-  cookie: {
-   maxAge: 3600000
-  }
- }))
+  saveUninitialized: false
+}));
 
 
  app.use(passport.initialize());
