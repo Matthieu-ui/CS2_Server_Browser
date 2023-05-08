@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const axios = require('axios');
-
-
+var port = 5000;
 
 
 // ********** MIDDLEWARE **********
@@ -12,7 +11,84 @@ require('dotenv').config()
 API_KEY = process.env.VITE_APP_API_KEY
 
 
-// ********** openID **********
+
+
+//auth
+var passport = require('passport');
+var session = require('express-session');
+const redis = require('redis');
+var passportSteam = require('passport-steam');
+var SteamStrategy = passportSteam.Strategy;
+const client = redis.createClient();
+
+const RedisStore = require('connect-redis')(session);
+
+
+
+
+
+// Required to get data from user for sessions
+passport.serializeUser((user, done) => {
+  done(null, user);
+ });
+ passport.deserializeUser((user, done) => {
+  done(null, user);
+ });
+ // Initiate Strategy
+ passport.use(new SteamStrategy({
+  returnURL: 'http://localhost:' + port + '/api/auth/steam/return',
+  realm: 'http://localhost:' + port + '/',
+  apiKey: API_KEY
+  }, function (identifier, profile, done) {
+   process.nextTick(function () {
+    profile.identifier = identifier;
+
+    return done(null, profile);
+   });
+  }
+ ));
+
+ app.use(session({
+  store: new RedisStore({ client: client }),
+  secret: 'your-secret-key-here',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+ app.use(passport.initialize());
+ app.use(passport.session());
+
+  // Routes
+
+ 
+
+
+//This is the route that tells passport to authenticate the user through steam, if there is a failure redirect them to the homepage
+
+app.get('/api/auth/steam',
+  passport.authenticate('steam', { failureRedirect: '/' }),
+  function(req, res) {  
+    res.redirect('/');
+  });
+
+//This is the route that will be used when steam sends back information about the user
+app.get('/api/auth/steam/return',
+
+  passport.authenticate('steam', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+//This is the route that will be used to log the user out
+app.get('/api/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+
+
+
 
 
 
@@ -105,6 +181,7 @@ app.use(function(err, req, res, next) {
 
 const emoji = require('node-emoji');
 
+
 // node emoji's link https://www.npmjs.com/package/node-emoji
 // spinnerCLI link https://www.npmjs.com/package/cli-spinners
 
@@ -116,8 +193,7 @@ class serverSpinner {
         let i = 0;
         setInterval(() => {
             
-            process.stdout.write(`\r${frames[i = ++i % frames.length]} Server is running on port 5000 - ` + new Date().toLocaleTimeString() 
-        
+            process.stdout.write(`\r${frames[i = ++i % frames.length]} Server is running on port ` + port + ` ` + new Date().toLocaleString() + `  ` + emoji.get('crystal_ball') + ` `
         );
         }, 100);
     }
@@ -126,7 +202,7 @@ class serverSpinner {
 
 // ********** SERVER **********
 
-app.listen(5000, () => {
+app.listen(port, () => {
     //    spinner.spin();
         console.log(new serverSpinner().spin());
     });

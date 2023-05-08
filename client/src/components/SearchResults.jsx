@@ -15,7 +15,7 @@ const SearchResult = ({
   
   const handleClick = async (appId, name) => {
     try {
-      const response = await fetch(`/api/stats/${appId}`);
+      const response = await fetch(`https://steamapiforum.onrender.com/api/stats/${appId}`);
       const data = await response.json();
       const onlinePlayers = data.response.player_count;
       onSelect(appId, name, onlinePlayers); // update selected app ID, name, and player count for 

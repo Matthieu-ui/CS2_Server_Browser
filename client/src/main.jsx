@@ -32,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/posts/:id" element={<PostViewPage />} />
         <Route path="/login" element={<Login />} />
 
+
       </Route>
     </Routes>
 

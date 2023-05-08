@@ -30,7 +30,7 @@ const Dashboard = () => {
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
         const appId = selectedAppId || defaultAppId; // use default value if no parameter is provided
-        axios.get(`/api/stats/${appId}`)
+        axios.get(`https://steamapiforum.onrender.com/api/stats/${appId}`)
             .then(response => {
 
                 setOnlinePlayers(response.data);
@@ -49,7 +49,7 @@ const Dashboard = () => {
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
         const appId = selectedAppId || defaultAppId;
-        axios.get(`/api/news/${appId}`)
+        axios.get(`https://steamapiforum.onrender.com/api/news/${appId}`)
             .then(response => {
                 setNews(response.data.appnews.newsitems);
                 console.log(response.data.appnews.newsitems);

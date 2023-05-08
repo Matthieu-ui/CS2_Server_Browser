@@ -116,7 +116,7 @@ className="w-6 h-6 text-white"
 
               </div>
 
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col w-full ">
               <div className="text-relative rounded-md mb-20 w-full position relative lg:w-full p-5 mx-auto">
                 {isLoading ? (
                   <div className="flex flex-col gap-3">
