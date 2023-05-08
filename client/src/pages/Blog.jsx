@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { supabase } from "../../supaBaseClient";
 import NewPost from "../components/NewPost";
-
+import Header from "../components/Header";
 import PostList from "../components/PostList";
 
 
@@ -60,30 +60,18 @@ className="w-6 h-6 text-white"
 
 
   return (
-    <div className="flex h-screen overflow-scroll bg-secondary">
+    <div className="flex  overflow-hidden bg-secondary">
       <div className="flex-1 flex flex-col">
-        <div className="header flex nm-concave-primary-sm p-5 flex-col">
-          <span className="flex items-center">
-            <Icon
-              icon="carbon:blog"
-              className="stroke-1 stroke-red-400 text-accent m-2 w-10 h-10 align-middle"
-            />
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
-              Blog
-            </h1>
-          </span>
-          <div className="flex-1 flex text-sm">
-            <p className="mt-1 text-orange-600 w-2/3 opacity-80">
-              The SteamSearch Blog is a place to share our thoughts on
-              the latest news and updates in the world of gaming on Steam.
-            </p>
-          </div>
-        </div>
 
-        <main className="flex-1  bg-secondary  max-w-screen-lg mx-auto">
-          <div className="flex flex-col md:flex-row md:gap-3 m-5">
 
-              <div className="flex flex-col w-full">
+        <Header 
+        headerTitle="Discussion Board" 
+        headerDescription="This discussion board is a place for developers connect and share tips and tricks related to Steam Web API."/>
+
+        
+        <main className="flex-1  bg-secondary max-w-screen-lg mx-auto">
+
+          
 
                 <div className="flex flex-col gap-3">
 
@@ -145,8 +133,7 @@ className="w-6 h-6 text-white"
 
               </div>
             </div>
-          </div>
-          </div>
+        
         </main>
       </div>
     </div>

@@ -5,6 +5,7 @@ import HomeFeed from "../components/HomeFeed";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import NewsItem from "../components/NewsItem";
+import Header from "../components/Header";
 
 const Dashboard = () => {
 
@@ -76,23 +77,15 @@ const Dashboard = () => {
 
     return (
 
-        <div className="flex h-screen overflow-scroll bg-secondary">
-            <div className="flex-1 flex flex-col">
-                <div className="header flex nm-concave-primary-sm p-5 flex-col">
 
-                    <span className="flex items-center">
-                        <img className="h-20 w-20 brightness-150" src="isoblokfurb.png" alt="SDDB" />
-                        <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm tracking-wider p-5">
-                            Steam webAPI Discussion Board
-                        </h1>
-                    </span>
+        <div className="flex overflow-auto bg-secondary">
+        <div className="flex-1 flex flex-col">
+    
 
-                    <div className="flex-1 flex text-sm">
-                        <p className="mt-1 text-orange-600 w-2/3 opacity-80">
-                            The Steam Web API Discussion Board is a free open-source tool for searching Steam's app and community data as well as a discussion board for Steam Web API developers.
-                        </p>
-                    </div>
-                </div>
+                <Header 
+                headerTitle="Steam webAPI Discussion Board" 
+                headerDescription="The Steam Web API Discussion Board is a free open-source tool for searching Steam's app and community data as well as a discussion board for Steam Web API developers." 
+              />
 
 
                 <main className="flex-1  bg-secondary max-w-screen-lg mx-auto">
@@ -221,7 +214,10 @@ const Dashboard = () => {
                 </main>
             </div>
         </div>
+
+      
     );
-};
+
+}
 
 export default Dashboard;

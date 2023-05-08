@@ -40,8 +40,8 @@ const HomeFeed = () => {
   return (
 
 
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-secondary">
-          <div className="flex flex-col md:flex-row md:gap-3 m-5">
+        <main className="">
+          <div className="">
             <div className="flex flex-col w-full ">
 
 
