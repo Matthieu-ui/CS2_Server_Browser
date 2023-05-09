@@ -15,7 +15,7 @@ const SearchResult = ({
   
   const handleClick = async (appId, name) => {
     try {
-      const response = await fetch(`https://steamapiforum.onrender.com/api/stats/${appId}`);
+      const response = await fetch(`/api/stats/${appId}`);
       const data = await response.json();
       const onlinePlayers = data.response.player_count;
       onSelect(appId, name, onlinePlayers); // update selected app ID, name, and player count for 
@@ -27,7 +27,7 @@ const SearchResult = ({
   return (
     <div className="relative w-full">
     
-      <div className="container mx-auto p-2">
+      <div className=" mx-auto p-2">
         <input
           className="hidden text-white rounded-md nm-inset-secondary-sm hover:nm-inset-secondary-lg cursor-pointer w-full focus:outline-none focus:ring focus:ring-primary-500 focus:ring-opacity-50"
           type="text"

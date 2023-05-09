@@ -6,7 +6,7 @@ function Sidebar() {
 
   return (
     <div className="flex">
-      <nav className="bg-primary w-36 pr-1">
+      <nav className="bg-primary w-36 pr-1 hidden sm:block md:block lg:block xl:block">
       
       <div className="flex items-center justify-center h-16 text-xl font-bold bg-gray-800 nm-inset-primary-sm p-3 rounded-br-lg">
         <img

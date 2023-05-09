@@ -30,7 +30,7 @@ const Dashboard = () => {
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
         const appId = selectedAppId || defaultAppId; // use default value if no parameter is provided
-        axios.get(`https://steamapiforum.onrender.com/api/stats/${appId}`)
+        axios.get(`/api/stats/${appId}`)
             .then(response => {
 
                 setOnlinePlayers(response.data);
@@ -49,7 +49,7 @@ const Dashboard = () => {
     useEffect(() => {
         const defaultAppId = '730'; // set a default value for the app id
         const appId = selectedAppId || defaultAppId;
-        axios.get(`https://steamapiforum.onrender.com/api/news/${appId}`)
+        axios.get(`/api/news/${appId}`)
             .then(response => {
                 setNews(response.data.appnews.newsitems);
                 console.log(response.data.appnews.newsitems);
@@ -88,9 +88,9 @@ const Dashboard = () => {
               />
 
 
-                <main className="flex-1  bg-secondary max-w-screen-lg mx-auto">
+                <main className="flex-1 bg-secondary max-w-screen-lg mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
-                        <div className="container mx-auto p-5 text-center">
+                        <div className=" mx-auto p-5 text-center">
                             <div class="w-full nm-flat-primary-sm p-2 mb-4">
 
                         
@@ -104,7 +104,7 @@ const Dashboard = () => {
 
                             <div class="flex flex-col md:flex-row">
                                 <div class="w-full ">
-                                    <div class="container mx-auto p-5 nm-flat-secondary-sm">
+                                    <div class=" mx-auto p-5 nm-flat-secondary-sm">
 
                                         <h2 class="text-white text-xs">
                                             App ID:
@@ -125,7 +125,7 @@ const Dashboard = () => {
                             </div>
 
 
-                            <div className="container mx-auto text-center">
+                            <div className=" mx-auto text-center">
                                 <div class="w-full nm-flat-secondary-sm p-2 mb-4">
                                     <SearchApps
                                         appId={selectedAppId}
@@ -143,7 +143,7 @@ const Dashboard = () => {
 
 
 
-                        <div className="nm-convex-secondary-sm container mx-auto p-5 w-full">
+                        <div className="nm-convex-secondary-sm  mx-auto p-5 w-full">
 
                             <h2 className="text-white text-xs">News for:
                                 <span className="text-accent font-bold p-1">{selectedAppName}</span>
@@ -171,27 +171,17 @@ const Dashboard = () => {
                     </div>
 
 
-
                     {/* HOMEFEED*/}
+                
                     <span
                         className="ml-10 mt-10 flex items-center mx-5 my-5 text-white text-xl font-bold flex-auto justify-start"
                     >
                         <h3
-                            className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
+                            className="text-4xl mx-auto font-bold bg-clip-text text-transparent bg-gradient-to-br from-orange-300 to-red-600 drop-shadow-sm">
                             Community Discussion</h3>
 
-                        <Link to="/blog">
-                            <button className=" ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg">
-                                Create Post
-                            </button>
-                        </Link>
-
-                        <Link to="/login">
-                            <button className="mx-auto flex items-center ml-10 nm-convex-secondary-sm rounded-lg text-white text-xl font-bold p-2 hover:nm-inset-primary-lg align-middle">
-                                <Icon icon="ic:twotone-verified-user" className="text-accent mx-auto h-6 w-6" /><p className="p-1"> Link Steam with OpenId</p>
-                            </button>
-                        </Link>
                     </span>
+           
 
 
                     {/*home feed*/}
@@ -212,6 +202,7 @@ const Dashboard = () => {
                     />
 
                 </main>
+                
             </div>
         </div>
 

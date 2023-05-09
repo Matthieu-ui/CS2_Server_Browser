@@ -5,7 +5,8 @@ const Footer = () => {
 
 
   return (
-    <footer className="bg-primary text-white p-4 text-sm">
+    
+    <footer className="bg-primary text-white p-4 text-sm mx-auto">
   <div className="text-center">
     <p>
       <strong>Steam_Dash 1.0.0</strong> by{' '}
@@ -20,7 +21,7 @@ const Footer = () => {
       Powered by{' '}
       <a href="#" className="text-gray-300 hover:text-blue-500">
         Steam Web API
-      </a>. Not affiliated with <Icon icon="simple-icons:valve" />
+      </a>. Not affiliated with Valve in any way.
     </p>
   </div>
 </footer>
