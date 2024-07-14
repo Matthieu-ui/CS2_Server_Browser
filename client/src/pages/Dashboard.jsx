@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
+import ServerList from '../components/ServerList';
 
 const Dashboard = () => {
     const [selectedAppId, setSelectedAppId] = useState(730);
@@ -45,9 +46,8 @@ const Dashboard = () => {
                         Servers Online:
                     </h2>
 
-                    <span className="text-green-600 animate-pulse drop-shadow-sm font-bold text-3xl">
-                        {selectedOnlinePlayers.toLocaleString()}
-                    </span>
+                    <ServerList />
+                  
 
                 </div>
                 </main>
