@@ -42,9 +42,6 @@ const Dashboard = () => {
 
                     <div className="text-center my-5">
 
-                    <h2 className="text-2xl mb-2">
-                        Servers Online:
-                    </h2>
 
                     <ServerList />
                   
