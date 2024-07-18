@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
-import ServerList from '../components/ServerList';
+
 
 const Dashboard = () => {
     const [selectedAppId, setSelectedAppId] = useState(730);
@@ -42,9 +42,8 @@ const Dashboard = () => {
 
                     <div className="text-center my-5">
 
-
-                    <ServerList />
-                  
+<a href="http://localhost:5173/api/servers">   servers</a>
+           
 
                 </div>
                 </main>
