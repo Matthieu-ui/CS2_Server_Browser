@@ -14,18 +14,35 @@ app.use(cors());
 // Accessing API Key
 const API_KEY = process.env.VITE_APP_API_KEY;
 
+// Function to refine and filter server data
+function refineServerData(servers) {
+    return servers.map(server => ({
+        address: server.addr,
+        gamePort: server.gameport,
+        name: server.name,
+        map: server.map,
+        players: server.players,
+        maxPlayers: server.max_players,
+        bots: server.bots,
+        secure: server.secure,
+        dedicated: server.dedicated,
+        os: server.os,
+        gameType: server.gametype
+    }));
+}
 
 // Steam server list endpoint
 app.get('/api/servers', (req, res) => {
     axios.get(`https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${API_KEY}`)
-    .then(response => {
-        console.log('Server List Response:', response.data); // Log response data to console
-        res.send(response.data); // Send response data to client
-    })
-    .catch(error => {
-        console.error('Error fetching servers:', error);
-        res.status(500).send('Error fetching servers');
-    });
+        .then(response => {
+            console.log('Server List Response:', response.data); // Log response data to console
+            const refinedData = refineServerData(response.data.response.servers);
+            res.send(refinedData); // Send refined data to client
+        })
+        .catch(error => {
+            console.error('Error fetching servers:', error);
+            res.status(500).send('Error fetching servers');
+        });
 });
 
 // Counter-strike stats API num players
